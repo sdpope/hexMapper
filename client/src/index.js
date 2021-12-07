@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { MapEditorProvider } from './MapEditorContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MapEditorProvider>
+      <App />
+    </MapEditorProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

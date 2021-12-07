@@ -1,4 +1,4 @@
-{
+const exampleJSON = {
 	"layout":"odd-r",
 	"hexes":{
 		"Q0R0":{"q":0,"r":0},
@@ -19,3 +19,5 @@
 		"Q3R3":{"q":3,"r":3}
 	}
 }
+
+export {exampleJSON};
