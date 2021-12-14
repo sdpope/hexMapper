@@ -4,47 +4,47 @@ import { MapEditorContext } from "../../MapEditorContext";
 
 const BackgroundHexTile = ({hex}) => {
 
-    const {editorMode, selectedHex, setSelectedHex, workingArray, setWorkingArray} = React.useContext(MapEditorContext);
+    const {editorMode, currentMap, setCurrentMap, setSelectedHex} = React.useContext(MapEditorContext);
 
     let hexPoints = '';
     hex.vertices.forEach((vertice) => {
         hexPoints = hexPoints + `${vertice.x + hex.x},${vertice.y + hex.y} `;
     });
+
+    // this component needs to be written to handle the tasks of editing,
+    // so a couple borders and css filters for different options would be good
+
+
+
+
+    // need to move this to foreground tile component
     const onClickHandler = () => {
-        console.log("On click!");
-        setSelectedHex(hex.key);
+        //console.log("On click!");
+        //setSelectedHex(hex.key);
         if (editorMode === "add") {
-            setWorkingArray([...workingArray, hex.key]);
-        }
+            if (currentMap !== null) {
+                let newMap = {...currentMap};
+                let tileNumber = Object.keys(newMap.hexes).length;
+                let newKey = `TileQ${hex.q}R${hex.r}`;
+                newMap.hexes[newKey] = {q: hex.q, r: hex.r};
+                // let newMap = {...currentMap};
+                setCurrentMap(newMap);
+                console.log("Added new tile,", newMap.hexes[newKey]);
+                setSelectedHex(newKey);
+                }
+            
+            }
+        
 
-        else if (editorMode === "remove") {
-            const newWorkingArray = workingArray.filter((key) => {
-                return key !== hex.key;
-            });
-
-            setWorkingArray(newWorkingArray);
-        }
     }
 
     let colour = "white";
-    if (workingArray.includes(hex.key)) {
-        colour = "blue";
-    }
-
-    const mouseOverHandler = () => {
-        //console.log(hex.key);
-        //setHoverHex(hex.key);
-        //setCursorCoordinates({r: })
-        //console.log(hex);
-    }
-
 
 
     return (
         <g>
             <BackHex points={hexPoints}
                     onMouseDown={onClickHandler}
-                    onMouseOver={mouseOverHandler}
                     fill={colour} stroke="black" />
         </g>
     );

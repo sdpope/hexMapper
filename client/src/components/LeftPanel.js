@@ -1,17 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { MapEditorContext } from "../MapEditorContext";
+import MapProperties from "./editor/MapProperties";
+import SelectedHexDetails from "./SelectedHexDetails";
 
 
 const LeftPanel = () => {
 
-    const {selectedHex, hoverHex, currentMap, setCurrentMap, editorMode, setEditorMode} = React.useContext(MapEditorContext);
+    const { currentMap, setCurrentMap, editorMode, setEditorMode} = React.useContext(MapEditorContext);
 
     return (
     <Wrapper>
-        Panel content here
-        <p>SelectedHex: {selectedHex !== null && selectedHex}</p>
-        <p>HoverHex: {hoverHex !== null && hoverHex}</p>    
         <p>Editor mode</p>
         <ul>
             <li>
@@ -32,6 +31,7 @@ const LeftPanel = () => {
                 onClick={() => setEditorMode("remove")}>remove</button>
             </li>
         </ul>
+        <SelectedHexDetails />
     
         
     </Wrapper>

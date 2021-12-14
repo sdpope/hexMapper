@@ -6,11 +6,24 @@ import HexTile from "./editor/HexTile";
 import BackgroundHexTile from "./editor/BackgroundHexTile";
 import { MapEditorContext } from "../MapEditorContext";
 
-
 const Sandbox = () => {
-    let testGrid = renderHexJSON(exampleJSON, 400, 400);
     
     const {currentMap, setCurrentMap} = React.useContext(MapEditorContext);
+
+
+    const makeWorkingGrid = (width, height) => {
+        const hex = {
+            "layout":"odd-r",
+            "hexes": {
+                "Q0R0":{"q":0,"r":0},
+                "Q0R1":{"q":width,"r":height},
+            }
+        }
+        const grid = getGridForHexJSON(hex);
+        const output = renderHexJSON(grid, 800, 800);
+
+        return output;
+    }
 
     const exampleJSON2 = {
         "layout":"odd-r",
@@ -39,7 +52,9 @@ const Sandbox = () => {
     let grid = getGridForHexJSON(exampleJSON3);
     let gridHexes = renderHexJSON(grid, 800, 800);
 
+    let gridHexes2 = makeWorkingGrid(40,40);
     //console.log(gridHexes);
+    //console.log(makeWorkingGrid(20,20));
 
 
 
@@ -48,16 +63,29 @@ const Sandbox = () => {
         <Wrapper>
             <MapContainer id="MapContainer" >
                 <SVGContainer  >
-                    {gridHexes !== null &&
-                    gridHexes.map((hex) => {
-                        return ( <BackgroundHexTile key={hex.key} hex={hex} /> );
+                    {gridHexes2 !== null &&
+                    gridHexes2.map((hex) => {
+                        let tileType = "bg";
+                        if (currentMap !== null) {
+                            let mapHexes = Object.keys(currentMap.hexes);
+                            mapHexes.forEach((tile) => {
+                                if (currentMap.hexes[tile].q === hex.q && currentMap.hexes[tile].r === hex.r ) {
+                                    tileType = "map";
+                                }
+                            })
+                        }
+                        
+                        if (tileType === "bg") {
+                            return ( <BackgroundHexTile key={hex.key} hex={hex} /> );
+                        }
+                        
+                        else if (tileType === "map") {
+                            return (<HexTile key={hex.key} hex={hex} />);
+                        }
+
                     })
                     }
 
-                    {false &&
-                    example2.map((hex) => {
-                        return ( <HexTile key={hex.key} hex={hex} /> );
-                    })}
                 </SVGContainer>
             </MapContainer>
             <button onClick={testHandler} >Make stuff happen</button>
@@ -74,7 +102,7 @@ const Sandbox = () => {
 export default Sandbox;
 
 const Wrapper = styled.div` 
-width: 60%
+width: 100%
 `;
 
 const SVGContainer = styled.svg`
