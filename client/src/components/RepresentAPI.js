@@ -6,19 +6,19 @@ import { MapEditorContext } from "../MapEditorContext";
 
 const RepresentAPI = () => {
 
-    const [objects, setObjects] = React.useState(null);
 
-    const {legislature, setLegislature, representElecteds, setRepresentElecteds, districts, setDistricts} = React.useContext(MapEditorContext);
+    const {legislature, setLegislature, representElecteds, setRepresentElecteds, districts, setDistricts, districtsGeo, setDistrictsGeo } = React.useContext(MapEditorContext);
 
 
     const legislatures = [
         {name: "Quebec",
-        districts: "http://represent.opennorth.ca/boundaries/quebec-electoral-districts-2017/?limit=400",
-        electeds: "http://represent.opennorth.ca/representatives/quebec-assemblee-nationale/?limit=400"
+        districts: "quebec-electoral-districts-2017",
+        electeds: "quebec-assemblee-nationale"
         },
         {name: "Newfoundland and Labrador",
-        districts: "http://represent.opennorth.ca/boundaries/newfoundland-and-labrador-electoral-districts/?limit=400",
-        electeds: "http://represent.opennorth.ca/representatives/newfoundland-labrador-legislature/?limit=400"}
+        districts: "newfoundland-and-labrador-electoral-districts",
+        electeds: "newfoundland-labrador-legislature"
+        }
 
     ];
 
@@ -29,7 +29,7 @@ const RepresentAPI = () => {
         // first we fetch the districts
 
         //console.log(legislature.districts);
-        fetch(legislature.districts)
+        fetch(`http://represent.opennorth.ca/boundaries/${legislature.districts}/?limit=400`)
         .then((res) => {return res.json(); })
         .then((res) => {
             //console.log(res.meta.total_count);
@@ -37,10 +37,12 @@ const RepresentAPI = () => {
             setDistricts(res.objects);
             });
 
+        const testElecteds = legislature.electeds;
+        console.log("legislature.electeds:", legislature.electeds);
         
         // then we fetch the electeds;
         //console.log(legislature.electeds);
-        fetch(legislature.electeds)
+        fetch(`http://represent.opennorth.ca/representatives/${testElecteds}/?limit=400`)
         .then((res) => {return res.json(); })
         .then((res) => {
             //console.log(res.meta.total_count);
@@ -48,6 +50,9 @@ const RepresentAPI = () => {
             setRepresentElecteds(res.objects);
             });
         
+        //then finally, we fetch the shapefile. this takes longer,
+        // so we will use a loading state just in case
+
         }
     
     }, [legislature] );

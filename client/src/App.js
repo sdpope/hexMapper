@@ -8,6 +8,9 @@ import Editor from "./components/editor/Editor";
 import RepresentAPI from "./components/RepresentAPI";
 import GetStarted from "./components/GetStarted";
 import Main from "./components/Main";
+import ManageMaps from "./components/ManageMaps";
+import GeoMap from "./components/GeoMap";
+import NavBar from "./components/NavBar";
 
 
 function App() {
@@ -16,6 +19,7 @@ function App() {
       <MainWrapper>
         <LeftPanel />
         <InnerWrapper>
+        <NavBar />
         <Switch>
           <Route path="/" exact>
           <Main />
@@ -34,6 +38,12 @@ function App() {
           </Route>
           <Route path="/reptest">
             <RepresentAPI />
+          </Route>
+          <Route path="/manage">
+            <ManageMaps />
+          </Route>
+          <Route path="/geomap">
+            <GeoMap />
           </Route>
         </Switch>
         </InnerWrapper>

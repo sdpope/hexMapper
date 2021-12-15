@@ -14,4 +14,15 @@ const makeWorkingGrid = (width, height) => {
     return output;
 }
 
-export {makeWorkingGrid};
+const boundaryToPolygon = (polygon) => {
+    let output = [];
+    //console.log(polygon);
+    polygon[0].forEach((line) => {
+      //console.log(line);
+      const newLine = {lng: Number(line[0]), lat: Number(line[1])};
+      output = [...output, newLine];
+    })
+    return output;
+  }
+
+export {makeWorkingGrid, boundaryToPolygon};

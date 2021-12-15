@@ -57,15 +57,19 @@ const HexTile = ({hex}) => {
     let keys = Object.keys(currentMap.hexes);
 
     keys.forEach((key) => {
-        if (currentMap.hexes[key].r == hex.r && currentMap.hexes[key].q === hex.q) {
+        if (currentMap.hexes[key].r === hex.r && currentMap.hexes[key].q === hex.q) {
             //now we check if it has a district assigned;
             if (currentMap.hexes[key].hasOwnProperty("district")) {
                 console.log(key, "has a district assigned");
                 //now we find the member;
                 let districtRep = representElecteds.filter((elected) => {
-                    return currentMap.hexes[key].district === elected.district_name;
+                    if (elected) {
+                        return currentMap.hexes[key].district === elected.district_name;
+                    }
+                    else { return false; }
                 });
-                console.log(districtRep[0].party_name);
+                if (districtRep.length > 0) {
+                    console.log(districtRep[0].party_name);
                 // then we assign the rep
                 let districtParty = districtRep[0].party_name;
                 // then finally, we assign the colour
@@ -74,6 +78,11 @@ const HexTile = ({hex}) => {
                         hexColour = party.colour;
                     }
                 })
+                }
+                else {
+                    console.log(representElecteds);
+                }
+                
             }
         }
     })

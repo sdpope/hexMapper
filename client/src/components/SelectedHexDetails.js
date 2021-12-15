@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const SelectedHexDetails = () => {
 
-    const {currentMap, setCurrentMap, selectedHex, districts, representElecteds} = React.useContext(MapEditorContext);
+    const {currentMap, setCurrentMap, selectedHex, districts, representElecteds, partyByDistrict} = React.useContext(MapEditorContext);
 
     //console.log("electeds", representElecteds);
 
@@ -23,8 +23,8 @@ const SelectedHexDetails = () => {
             })
         }
     
-    }
-
+    }   
+        //console.log(districtRep);
     
     
 
@@ -56,8 +56,8 @@ const SelectedHexDetails = () => {
                     <p>District: {currentMap.hexes[selectedHex].district}</p>
                     {districtRep !== null && 
                     <>
-                        <p>Representative: {districtRep[0].name} </p>
-                        <p>Party Name: {districtRep[0].party_name}</p>
+                        <p>Representative: {false && districtRep[0].name} </p>
+                        <p>Party Name: {false && districtRep[0].party_name}</p>
                     </>
                     }
                 </>

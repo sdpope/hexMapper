@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MapEditorContext } from "../MapEditorContext";
 import MapProperties from "./editor/MapProperties";
 import SelectedHexDetails from "./SelectedHexDetails";
+import SubmitMapButton from "./SubmitMapButton";
 
 
 const LeftPanel = () => {
@@ -31,6 +32,7 @@ const LeftPanel = () => {
                 onClick={() => setEditorMode("remove")}>remove</button>
             </li>
         </ul>
+        <SubmitMapButton />
         <SelectedHexDetails />
     
         

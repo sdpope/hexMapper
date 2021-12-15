@@ -2,28 +2,11 @@
 
 import React from 'react';
 import { GoogleMap, useJsApiLoader, Polygon, Data } from '@react-google-maps/api';
-import boundaryTest2 from "./boundaryTest2.json";
+import DistrictPolygon from './DistrictPolygon';
+import { boundaryToPolygon } from './editor/utilities';
+import { MapEditorContext } from '../MapEditorContext';
 
 
-//console.log(boundaryTest2);
-//console.log(boundaryTest2.coordinates[0]);
-
-
-const boundaryToPolygon = (polygon) => {
-  let output = [];
-  //console.log(polygon);
-  polygon[0].forEach((line) => {
-    //console.log(line);
-    const newLine = {lng: Number(line[0]), lat: Number(line[1])};
-    output = [...output, newLine];
-  })
-  return output;
-}
-
-//console.log(boundaryToPolygon(boundaryTest2.coordinates[9]));
-
-const testBoundaryConvert = boundaryToPolygon(boundaryTest2.coordinates[9]);
-console.log("test boundary conversion", testBoundaryConvert[0].lat);
 
 const containerStyle = {
   width: '800px',
@@ -31,11 +14,17 @@ const containerStyle = {
 };
 
 const center = {
-  lat: testBoundaryConvert[0].lat,
-  lng: testBoundaryConvert[0].lng,
+  lat: 45.4215,
+  lng: -75.6972,
 };
 
 const MapTest = () => {
+
+  const {districtsGeo, setDistrictsGeo, representElecteds} = React.useContext(MapEditorContext);
+
+
+ 
+
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -43,14 +32,6 @@ const MapTest = () => {
   })
 
 
-
-
-  const triangleCoords = [
-    { lat: 25.774, lng: -80.19 },
-    { lat: 18.466, lng: -66.118 },
-    { lat: 32.321, lng: -64.757 },
-    { lat: 25.774, lng: -80.19 },
-  ];
 
   const [map, setMap] = React.useState(null)
 
@@ -71,7 +52,6 @@ const MapTest = () => {
   }, [])
 
 
-
   
   return isLoaded ? (
       <GoogleMap
@@ -82,38 +62,26 @@ const MapTest = () => {
         onUnmount={onUnmount}
       >
         { /* Child components, such as markers, info windows, etc. */ }
+      
+      {districtsGeo !== null &&
+        districtsGeo.map((district) => {
+          //console.log("rendering district polygon,", district.name);
+          const districtRep = representElecteds.filter((elected) => {
+            return district.name === elected.district_name;
+          })[0];
 
-      {boundaryTest2.coordinates.map((polygon) => {
-        const newPolygon = boundaryToPolygon(polygon);
-        //console.log("new polygon: ", newPolygon);
-        //console.log(newPolygon[0]);
+          return (
+            <DistrictPolygon 
+            key={`${district.name}Polygon`} 
+            districtShape={district.simple_shape} 
+            districtName={district.name}
+            />
+          );
+        })
 
-        return (<Polygon 
-          path={newPolygon}
-          options={{
-            fillColor: "yellow",
-            fillOpacity: 0.4,
-            strokeColor: "#d35400",
-            strokeOpacity: 0.8,
-            strokeWeight: 3
-        }} />
+      }
+    
 
-        );
-
-      })}
-
-
-
-        <Polygon 
-        path={triangleCoords}
-        options={{
-                fillColor: "yellow",
-                fillOpacity: 0.4,
-                strokeColor: "#d35400",
-                strokeOpacity: 0.8,
-                strokeWeight: 3
-            }} />
-        <></>
       </GoogleMap>
   ) : <></>
 }
