@@ -18,7 +18,6 @@ const RightPanel = () => {
             <p>Legislature: {legislature.name}</p>
         }
 
-        <ColourPicker />
     </Wrapper>
     );
 }

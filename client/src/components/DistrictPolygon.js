@@ -11,7 +11,7 @@ const DistrictPolygon = ({districtShape, districtName, }) => {
     const {districts, representElecteds, colourRules, partyByDistrict } = React.useContext(MapEditorContext);
      // first we find the rep:
 
-    let fillColour = "green";
+    let fillColour = "white";
 
     if (partyByDistrict !== null) {
         colourRules.forEach((party) => {

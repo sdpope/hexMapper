@@ -124,9 +124,8 @@ export const MapEditorProvider = ({children}) => {
         }
         console.log("partyByDistrict", newPartyByDistrict);
         console.log(Object.keys(newPartyByDistrict).length);
-        console.log(districts);
-        console.log(representElecteds);
-        console.log(newPartyByDistrict);
+        console.log("Districts:", districts);
+        console.log("Electeds", representElecteds);
         setPartyByDistrict(newPartyByDistrict);
 
 

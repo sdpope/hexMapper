@@ -14,8 +14,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 45.4215,
-  lng: -75.6972,
+  lat: 56.1304,
+  lng: -106.3468,
 };
 
 const MapTest = () => {
@@ -53,11 +53,14 @@ const MapTest = () => {
 
 
   
-  return isLoaded ? (
+  return isLoaded && districtsGeo !== null ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
+        center={{
+          lat: 56.1304,
+          lng: -106.3468,
+        }}
+        zoom={3}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
@@ -83,7 +86,7 @@ const MapTest = () => {
     
 
       </GoogleMap>
-  ) : <></>
+  ) : <>Loading boundary shapes</>
 }
 
 export default MapTest;

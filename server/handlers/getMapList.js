@@ -17,14 +17,16 @@ const getMapList = async (req, res) => {
 
     //console.log(allMaps);
     
+    let mapList = [];
+
     allMaps.forEach((map) => {
-        console.log(map._id);
+        mapList.push({_id: map._id, name: map.name, legislature: map.legislature});
     })
 
     client.close();
 
     res.status(200).json({
-        data: "nothing"
+        data: mapList
     })
 
 }

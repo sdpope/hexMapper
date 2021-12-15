@@ -4,7 +4,7 @@ import { MapEditorContext } from "../../MapEditorContext";
 
 const HexTile = ({hex}) => {
 
-    const {selectedHex, setSelectedHex, editorMode, setEditorMode, currentMap, setCurrentMap, colourRules, districts, representElecteds} = React.useContext(MapEditorContext);
+    const {selectedHex, setSelectedHex, editorMode, setEditorMode, currentMap, setCurrentMap, colourRules, districts, representElecteds, partyByDistrict} = React.useContext(MapEditorContext);
 
     let hexPoints = '';
     hex.vertices.forEach((vertice) => {
@@ -60,28 +60,18 @@ const HexTile = ({hex}) => {
         if (currentMap.hexes[key].r === hex.r && currentMap.hexes[key].q === hex.q) {
             //now we check if it has a district assigned;
             if (currentMap.hexes[key].hasOwnProperty("district")) {
-                console.log(key, "has a district assigned");
+                //console.log(key, "has a district assigned");
                 //now we find the member;
-                let districtRep = representElecteds.filter((elected) => {
-                    if (elected) {
-                        return currentMap.hexes[key].district === elected.district_name;
-                    }
-                    else { return false; }
-                });
-                if (districtRep.length > 0) {
-                    console.log(districtRep[0].party_name);
-                // then we assign the rep
-                let districtParty = districtRep[0].party_name;
+                let localDistrictName = currentMap.hexes[key]["district"];
+
+                let districtParty = partyByDistrict[localDistrictName];
                 // then finally, we assign the colour
                 colourRules.forEach((party) => {
                     if (party.name === districtParty) {
                         hexColour = party.colour;
                     }
                 })
-                }
-                else {
-                    console.log(representElecteds);
-                }
+            
                 
             }
         }

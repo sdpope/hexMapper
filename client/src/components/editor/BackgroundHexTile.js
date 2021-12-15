@@ -29,7 +29,7 @@ const BackgroundHexTile = ({hex}) => {
                 newMap.hexes[newKey] = {q: hex.q, r: hex.r};
                 // let newMap = {...currentMap};
                 setCurrentMap(newMap);
-                console.log("Added new tile,", newMap.hexes[newKey]);
+                //console.log("Added new tile,", newMap.hexes[newKey]);
                 setSelectedHex(newKey);
                 }
             

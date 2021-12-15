@@ -9,53 +9,59 @@ const RepresentAPI = () => {
 
     const {legislature, setLegislature, representElecteds, setRepresentElecteds, districts, setDistricts, districtsGeo, setDistrictsGeo } = React.useContext(MapEditorContext);
 
-
     const legislatures = [
+        
+        {name: "Newfoundland and Labrador",
+        districts: "newfoundland-and-labrador-electoral-districts",
+        electeds: "newfoundland-labrador-legislature"
+        },
+        {
+            name: "Nova Scotia",
+            districts: "nova-scotia-electoral-districts-2019",
+            electeds: "nova-scotia-legislature",
+        },
+        {
+            name: "New Brunswick",
+            districts: "new-brunswick-electoral-districts",
+            electeds: "new-brunswick-legislature",
+        },
+        {
+            name: "Prince Edward Island",
+            districts: "prince-edward-island-electoral-districts-2017",
+            electeds: "pei-legislature",
+        },
         {name: "Quebec",
         districts: "quebec-electoral-districts-2017",
         electeds: "quebec-assemblee-nationale"
         },
-        {name: "Newfoundland and Labrador",
-        districts: "newfoundland-and-labrador-electoral-districts",
-        electeds: "newfoundland-labrador-legislature"
-        }
-
+        {
+            name: "Ontario",
+            districts: "ontario-electoral-districts-representation-act-2015",
+            electeds: "ontario-legislature",
+        },
+        
+        {
+            name: "Manitoba",
+            districts: "manitoba-electoral-districts-2018",
+            electeds: "manitoba-legislature",
+        },
+        {
+            name: "Saskatchewan",
+            districts: "saskatchewan-electoral-districts-representation-act-2012",
+            electeds: "saskatchewan-legislature",
+        },
+        {
+            name: "Alberta",
+            districts: "alberta-electoral-districts-2017",
+            electeds: "alberta-legislature",
+        },
+        {
+            name: "British Columbia",
+            districts: "british-columbia-electoral-districts-2015-redistribution",
+            electeds: "bc-legislature",
+        },
     ];
-
-    React.useEffect(() => {
-        //console.log("on mount");
-        if (legislature !== null) {
-
-        // first we fetch the districts
-
-        //console.log(legislature.districts);
-        fetch(`http://represent.opennorth.ca/boundaries/${legislature.districts}/?limit=400`)
-        .then((res) => {return res.json(); })
-        .then((res) => {
-            //console.log(res.meta.total_count);
-            //console.log(res);
-            setDistricts(res.objects);
-            });
-
-        const testElecteds = legislature.electeds;
-        console.log("legislature.electeds:", legislature.electeds);
-        
-        // then we fetch the electeds;
-        //console.log(legislature.electeds);
-        fetch(`http://represent.opennorth.ca/representatives/${testElecteds}/?limit=400`)
-        .then((res) => {return res.json(); })
-        .then((res) => {
-            //console.log(res.meta.total_count);
-            //console.log(res);
-            setRepresentElecteds(res.objects);
-            });
-        
-        //then finally, we fetch the shapefile. this takes longer,
-        // so we will use a loading state just in case
-
-        }
     
-    }, [legislature] );
 //todo: 
 
 

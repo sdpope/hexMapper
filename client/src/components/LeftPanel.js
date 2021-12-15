@@ -4,6 +4,7 @@ import { MapEditorContext } from "../MapEditorContext";
 import MapProperties from "./editor/MapProperties";
 import SelectedHexDetails from "./SelectedHexDetails";
 import SubmitMapButton from "./SubmitMapButton";
+import ColourPicker from "./editor/ColourPicker";
 
 
 const LeftPanel = () => {
@@ -34,8 +35,9 @@ const LeftPanel = () => {
         </ul>
         <SubmitMapButton />
         <SelectedHexDetails />
+        <ColourPicker />
     
-        
+    
     </Wrapper>
     );
 }
