@@ -1,7 +1,6 @@
 import React from "react";
-import { GoogleMap, useJsApiLoader, Polygon, Data } from '@react-google-maps/api';
+import {  Polygon } from '@react-google-maps/api';
 import { boundaryToPolygon } from "./editor/utilities";
-import { randomUUID } from "crypto";
 import { MapEditorContext } from "../MapEditorContext";
 
 

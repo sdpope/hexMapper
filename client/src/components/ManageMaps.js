@@ -24,7 +24,7 @@ const ManageMaps = () => {
                 {mapList !== null &&
                     mapList.map((map) => {
                         return (
-                            <li key={map._id}>{map.name} {map._id}
+                            <li key={map._id}>{map.name} {map.legislature.name}
                                 <button onClick={() => {
                                     fetch(`/deleteMap/${map._id}`, 
                                     { method: "DELETE"})
@@ -35,6 +35,12 @@ const ManageMaps = () => {
                                     })
                                 }}>
                                     Delete
+                                </button>
+                                <button
+                                onClick={() => {
+                                    console.log(map._id);
+                                }}>
+                                    Load
                                 </button>
                             </li>
                         );

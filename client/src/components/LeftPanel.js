@@ -5,6 +5,7 @@ import MapProperties from "./editor/MapProperties";
 import SelectedHexDetails from "./SelectedHexDetails";
 import SubmitMapButton from "./SubmitMapButton";
 import ColourPicker from "./editor/ColourPicker";
+import MapInfo from "./editor/MapInfo";
 
 
 const LeftPanel = () => {
@@ -34,6 +35,7 @@ const LeftPanel = () => {
             </li>
         </ul>
         <SubmitMapButton />
+        <MapInfo />
         <SelectedHexDetails />
         <ColourPicker />
     

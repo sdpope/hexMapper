@@ -1,14 +1,12 @@
 import React from "react";
-import {renderHexJSON, getGridForHexJSON} from "d3-hexjson";
 import styled from "styled-components";
-import MapProperties from "./MapProperties";
 import { MapEditorContext } from "../../MapEditorContext";
 import BackgroundHexTile from "./BackgroundHexTile";
 import HexTile from "./HexTile";
 
 const Editor = () => {
 
-    const {editorStatus, setEditorStatus, currentMap, setCurrentMap, workingGrid, setWorkingGrid} = React.useContext(MapEditorContext);
+    const {currentMap, setCurrentMap, workingGrid, setWorkingGrid} = React.useContext(MapEditorContext);
 
 
     return (        

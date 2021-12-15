@@ -3,6 +3,7 @@ import { MapEditorContext } from "../MapEditorContext";
 import GetStarted from "./GetStarted";
 import Editor from "./editor/Editor";
 import NavBar from "./NavBar";
+import Setup from "./Setup";
 
 const Main = () => {
 
@@ -12,7 +13,7 @@ const Main = () => {
     return (
         <>
         {workingGrid === null &&
-                <GetStarted />
+                <Setup />
         }
         {
             workingGrid !== null &&

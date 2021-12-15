@@ -35,17 +35,6 @@ export const MapEditorProvider = ({children}) => {
 
 
 
-    const legislatures = [
-      {name: "Quebec",
-      districts: "quebec-electoral-districts-2017",
-      electeds: "quebec-assemblee-nationale"
-      },
-      {name: "Newfoundland and Labrador",
-      districts: "newfoundland-and-labrador-electoral-districts",
-      electeds: "newfoundland-labrador-legislature"
-      }
-
-  ];
 
   React.useEffect(() => {
       //console.log("on mount");

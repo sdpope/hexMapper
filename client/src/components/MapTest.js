@@ -1,10 +1,10 @@
-
-
 import React from 'react';
 import { GoogleMap, useJsApiLoader, Polygon, Data } from '@react-google-maps/api';
 import DistrictPolygon from './DistrictPolygon';
 import { boundaryToPolygon } from './editor/utilities';
 import { MapEditorContext } from '../MapEditorContext';
+
+import { googleMapsApiKey } from '../gmapsAPI';
 
 
 
@@ -28,7 +28,7 @@ const MapTest = () => {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCYbhWzRG9LbRB4NMwyr_3qyKmfpnXJEnE"
+    googleMapsApiKey: googleMapsApiKey
   })
 
 
@@ -43,9 +43,6 @@ const MapTest = () => {
     
   }, [])
 
-  const onDataLoad = data => {
-    console.log('data: ', data)
-  }
 
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)

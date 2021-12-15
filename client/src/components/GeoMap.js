@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { GoogleMap, useJsApiLoader, Polygon, Data } from '@react-google-maps/api';
 
 const GeoMap = () => {
 
