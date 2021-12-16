@@ -11,6 +11,7 @@ const { submitMap } = require("./handlers/submitMap");
 const { getMapByID } = require("./handlers/getMapByID");
 const { deleteMap } = require("./handlers/deleteMap");
 const { getMapList } = require("./handlers/getMapList");
+const {updateMap} = require("./handlers/updateMap");
 
 
 
@@ -29,6 +30,8 @@ app.use(express.json());
 app.get("/getMapList", getMapList)
 
 app.post("/submitMap", submitMap )
+
+app.put("/updateMap", updateMap )
 
 app.get("/getMapByID/:_id", getMapByID)
 

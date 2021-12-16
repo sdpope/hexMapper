@@ -11,7 +11,7 @@ const NavBar = () => {
                     <Link to="/">Editor</Link>
                 </NavItem>
                 <NavItem>
-                    <Link to="/maptest">GeoMap</Link>
+                    <Link to="/geomap">GeoMap</Link>
                 </NavItem>
                 <NavItem>
                     <Link to="/manage">Manage Maps</Link>

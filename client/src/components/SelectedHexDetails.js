@@ -1,6 +1,7 @@
 import React from "react";
 import { MapEditorContext } from "../MapEditorContext";
 import styled from "styled-components";
+import RepresentElectedOfficial from "./RepresentElectedOfficial";
 
 const SelectedHexDetails = () => {
 
@@ -51,24 +52,20 @@ const SelectedHexDetails = () => {
             <div>
                 {currentMap.hexes[selectedHex].district === undefined &&
             "no district selected yet"}
-                {currentMap.hexes[selectedHex].district !== undefined &&
+                {currentMap.hexes[selectedHex].hasOwnProperty("district") &&
                 <>
-                    <p>District: {currentMap.hexes[selectedHex].district}</p>
-                    {districtRep !== null && 
-                    <>
-                        <p>Representative: {false && districtRep[0].name} </p>
-                        <p>Party Name: {false && districtRep[0].party_name}</p>
-                    </>
-                    }
+                    <RepresentElectedOfficial districtName={currentMap.hexes[selectedHex].district} />
                 </>
                 }
             </div>
             <form id="districtPick" onSubmit={districtPickHandler}>
-                <select>
+                <DistrictPicker>
                     {districts !== null && districts.map((district) => {
-                        return <option key={district.name} value={district.name}>{district.name}</option>
+
+                        return <option key={district.name} value={district.name}>{district.name}</option>;
+
                     })}
-                </select>
+                </DistrictPicker>
                 <button type="submit">Set District</button>
             </form>
             {}
@@ -83,6 +80,10 @@ const SelectedHexDetails = () => {
 export default SelectedHexDetails;
 
 const Wrapper = styled.div` 
-border: 1px solid black;
+border: none;
 margin: 0;
+`;
+
+const DistrictPicker = styled.select` 
+width: 80%;
 `;

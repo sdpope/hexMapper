@@ -6,8 +6,9 @@ import HexTile from "./HexTile";
 
 const Editor = () => {
 
-    const {currentMap, setCurrentMap, workingGrid, setWorkingGrid} = React.useContext(MapEditorContext);
+    const {setEditorPanel, editorPanel, currentMap, setCurrentMap, workingGrid, setWorkingGrid} = React.useContext(MapEditorContext);
 
+    setEditorPanel("hex");
 
     return (        
             <Wrapper>

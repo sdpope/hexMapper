@@ -2,12 +2,9 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import MapTest from "./components/MapTest";
 import styled from "styled-components";
 import LeftPanel from "./components/LeftPanel";
-import RightPanel from "./components/RightPanel";
 import Editor from "./components/editor/Editor";
-import GetStarted from "./components/GetStarted";
 import Main from "./components/Main";
 import ManageMaps from "./components/ManageMaps";
-import GeoMap from "./components/GeoMap";
 import NavBar from "./components/NavBar";
 
 
@@ -35,7 +32,7 @@ function App() {
             <ManageMaps />
           </Route>
           <Route path="/geomap">
-            <GeoMap />
+            <MapTest />
           </Route>
         </Switch>
         </InnerWrapper>

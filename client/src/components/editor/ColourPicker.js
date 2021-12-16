@@ -6,8 +6,8 @@ const ColourPicker = () => {
     const {representElecteds, colourRules, setColourRules} = React.useContext(MapEditorContext);
 
     React.useEffect(() => {
-        console.log("Mount colour picker");
-        console.log(colourRules);
+        //console.log("Mount colour picker");
+        //console.log(colourRules);
         
         if (representElecteds !== null && colourRules === null ) {
             console.log("inside if statement");
@@ -35,7 +35,7 @@ const ColourPicker = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(event.target[4]);
+        //console.log(event.target[4]);
 
         //iterate through everything in the form EXCEPT the submit button
 
@@ -46,7 +46,7 @@ const ColourPicker = () => {
         for (let index = 0; index < numColours; index++) {
             newColourRules.push({name: event.target[index].name, colour: event.target[index].value});
         }
-        console.log("new colours", newColourRules);
+        //console.log("new colours", newColourRules);
         setColourRules(newColourRules);
     }
 
@@ -66,7 +66,8 @@ const ColourPicker = () => {
                             </li>
                         );
                     })}
-                    <button type="submit">Set Colours</button>
+                    {colourRules !== null &&
+                    <button type="submit">Set Colours</button> }
                     </form>
             </ul>
         </div>

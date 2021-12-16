@@ -20,18 +20,14 @@ const center = {
 
 const MapTest = () => {
 
-  const {districtsGeo, setDistrictsGeo, representElecteds} = React.useContext(MapEditorContext);
-
-
- 
-
+  const {districtsGeo, setDistrictsGeo, representElecteds, editorPanel, setEditorPanel} = React.useContext(MapEditorContext);
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: googleMapsApiKey
   })
 
-
+  setEditorPanel("geomap");
 
   const [map, setMap] = React.useState(null)
 

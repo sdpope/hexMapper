@@ -1,21 +1,22 @@
 import React from "react";
 import { MapEditorContext } from "../MapEditorContext";
 
-const SubmitMapButton = () => {
+const UpdateMapButton = () => {
 
 
-    const {currentMap, colourRules, legislature, currentMapTitle, setCurrentMapUUID} = React.useContext(MapEditorContext);
+    const {currentMapUUID, currentMap, colourRules, legislature, currentMapTitle, setCurrentMapUUID} = React.useContext(MapEditorContext);
 
 
     const handleClick = () => {
         const newMapToSubmit = {
+            _id: currentMapUUID,
             name: currentMapTitle,
             legislature: legislature,
             colourRules: colourRules,
             mapObject: currentMap,
         }
-        fetch(`/submitMap`, {
-            method: "POST",
+        fetch(`/updateMap`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -32,10 +33,10 @@ const SubmitMapButton = () => {
 
     return (
         <div>
-            <button onClick={handleClick}>Save new map</button>
+            <button onClick={handleClick}>Save changes</button>
         </div>
     );
 
 }
 
-export default SubmitMapButton;
+export default UpdateMapButton;

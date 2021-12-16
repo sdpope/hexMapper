@@ -25,12 +25,12 @@ const MapProperties = () => {
     
         <SettingsWrapper>
             <label for="heightTiles">Height (tiles)</label>
-            <input name="heightTiles" type="number" defaultValue="20" min="1"></input>
+            <SizeInput name="heightTiles" type="number" defaultValue="20" min="1"></SizeInput>
             <label for="widthTiles">Width (tiles)</label>
-            <input name="widthTiles" type="number" defaultValue="20" min="1"></input>
+            <SizeInput name="widthTiles" type="number" defaultValue="20" min="1"></SizeInput>
         </SettingsWrapper>
 
-        <button type="submit">Get started!</button>
+        <button type="submit">Resize</button>
         </form>
     </>
     );
@@ -39,6 +39,11 @@ const MapProperties = () => {
 const SettingsWrapper = styled.div` 
 display: flex;
 flex-direction: column;
+`;
+
+const SizeInput = styled.input` 
+width: 30px;
+
 `;
 
 export default MapProperties;

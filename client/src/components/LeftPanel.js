@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { MapEditorContext } from "../MapEditorContext";
-import MapProperties from "./editor/MapProperties";
 import SelectedHexDetails from "./SelectedHexDetails";
-import SubmitMapButton from "./SubmitMapButton";
 import ColourPicker from "./editor/ColourPicker";
 import MapInfo from "./editor/MapInfo";
+import RepresentElectedOfficial from "./RepresentElectedOfficial";
+
 
 
 const LeftPanel = () => {
 
-    const { currentMap, setCurrentMap, editorMode, setEditorMode} = React.useContext(MapEditorContext);
+    const { editorPanel, selectedHex, legislature, currentMapUUID, currentMap, setCurrentMap, editorMode, setEditorMode} = React.useContext(MapEditorContext);
 
     return (
     <Wrapper>
@@ -34,10 +34,18 @@ const LeftPanel = () => {
                 onClick={() => setEditorMode("remove")}>remove</button>
             </li>
         </ul>
-        <SubmitMapButton />
-        <MapInfo />
-        <SelectedHexDetails />
-        <ColourPicker />
+        {legislature !== null &&
+        <>
+            <MapInfo />
+            { editorPanel === "hex" && <SelectedHexDetails />}
+            <ColourPicker />
+        </>
+        }
+        {
+            false && selectedHex !== null && currentMap.hexes[selectedHex].hasOwnProperty("district") &&
+            <RepresentElectedOfficial districtName={currentMap.hexes[selectedHex].district} />
+        }
+        
     
     
     </Wrapper>

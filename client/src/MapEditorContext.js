@@ -74,14 +74,11 @@ export const MapEditorProvider = ({children}) => {
         // and process it into the form we need to render it onto google maps
         
         let rawGeoJSON = null;
-        if (districtsGeo !== null) {
-          //console.log(districtsGeo[0]);
-        }
       
         //console.log("logging districtsGeo", districtsGeo);
     
         console.log ("Getting shape file geojson");
-        if (districtsGeo === null && legislature !== null) {
+        if (legislature !== null) {
           fetch(`https://represent.opennorth.ca/boundaries/${legislature.districts}/simple_shape`)
         .then((res) => {return res.json();})
         .then((res) => {
@@ -95,7 +92,7 @@ export const MapEditorProvider = ({children}) => {
     
       
     
-      }, [districtsGeo, legislature]);
+      }, [legislature]);
 
 
       React.useEffect(() => {
