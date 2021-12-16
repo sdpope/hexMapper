@@ -20,7 +20,7 @@ const center = {
 
 const MapTest = () => {
 
-  const {districtsGeo, setDistrictsGeo, representElecteds, editorPanel, setEditorPanel} = React.useContext(MapEditorContext);
+  const {selectedGeoDistrict, setSelectedGeoDisticted, districtsGeo, setDistrictsGeo, representElecteds, editorPanel, setEditorPanel} = React.useContext(MapEditorContext);
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -62,9 +62,9 @@ const MapTest = () => {
       {districtsGeo !== null &&
         districtsGeo.map((district) => {
           //console.log("rendering district polygon,", district.name);
-          const districtRep = representElecteds.filter((elected) => {
+          /* const districtRep = representElecteds.filter((elected) => {
             return district.name === elected.district_name;
-          })[0];
+          })[0]; */
 
           return (
             <DistrictPolygon 

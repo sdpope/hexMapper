@@ -2,6 +2,7 @@ import React from "react";
 import { MapEditorContext } from "../MapEditorContext";
 import { useHistory } from "react-router-dom";
 import { makeWorkingGrid } from "./editor/utilities";
+import styled from "styled-components";
 
 
 const ManageMaps = () => {
@@ -28,23 +29,15 @@ const ManageMaps = () => {
 
 
     return (
-        <>Manage Maps here.
+        <><Header>Saved Maps</Header>
             <ul>
                 {mapList !== null &&
                     mapList.map((map) => {
                         return (
-                            <li key={map._id}>{map.name} {map.legislature.name}
-                                <button onClick={() => {
-                                    fetch(`/deleteMap/${map._id}`, 
-                                    { method: "DELETE"})
-                                    .then((res) => res.json())
-                                    .then((res) => {
-                                        console.log(res);
-                                        setListNeedsUpdate(!listNeedsUpdate);
-                                    })
-                                }}>
-                                    Delete
-                                </button>
+                            <MapItem key={map._id}>
+                                <MapTitle>{map.name}</MapTitle>
+                                <Leg>{map.legislature.name}</Leg>
+                                <Buttons>
                                 <button
                                 onClick={() => {
                                     console.log(map._id);
@@ -66,7 +59,19 @@ const ManageMaps = () => {
                                 }}>
                                     Load
                                 </button>
-                            </li>
+                                <button onClick={() => {
+                                    fetch(`/deleteMap/${map._id}`, 
+                                    { method: "DELETE"})
+                                    .then((res) => res.json())
+                                    .then((res) => {
+                                        console.log(res);
+                                        setListNeedsUpdate(!listNeedsUpdate);
+                                    })
+                                }}>
+                                    Delete
+                                </button>
+                                </Buttons>
+                            </MapItem>
                         );
                     })
                 }
@@ -76,3 +81,29 @@ const ManageMaps = () => {
 }
 
 export default ManageMaps;
+
+const Header = styled.h2`
+
+
+`;
+
+const MapItem = styled.li` 
+display: flex;
+justify-content: space-between;
+list-style: none;
+width: 800px;
+`;
+
+const MapTitle = styled.span` 
+text-decoration: underline;
+`;
+
+const Leg = styled.span` 
+font-weight: bold;
+
+
+`;
+
+const Buttons = styled.div` 
+
+`;

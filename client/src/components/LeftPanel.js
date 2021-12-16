@@ -10,34 +10,38 @@ import RepresentElectedOfficial from "./RepresentElectedOfficial";
 
 const LeftPanel = () => {
 
-    const { editorPanel, selectedHex, legislature, currentMapUUID, currentMap, setCurrentMap, editorMode, setEditorMode} = React.useContext(MapEditorContext);
+    const { selectedGeoDistrict, editorPanel, selectedHex, legislature, currentMapUUID, currentMap, setCurrentMap, editorMode, setEditorMode} = React.useContext(MapEditorContext);
 
     return (
     <Wrapper>
-        <p>Editor mode</p>
+        <h2>hexMapper</h2>
+        <h3>Editor mode</h3>
         <ul>
-            <li>
+            <ListItem>
                 <button 
                 disabled={editorMode === "select"}
                 onClick={() => setEditorMode("select")}>
                     select</button>
-            </li>
-            <li>
+            </ListItem>
+            <ListItem>
                 <button 
                 disabled={editorMode === "add"}
                 onClick={() => setEditorMode("add")}>
                     add</button>
-            </li>
-            <li>
+            </ListItem>
+            <ListItem>
                 <button 
                 disabled={editorMode === "remove"}
                 onClick={() => setEditorMode("remove")}>remove</button>
-            </li>
+            </ListItem>
         </ul>
         {legislature !== null &&
         <>
             <MapInfo />
             { editorPanel === "hex" && <SelectedHexDetails />}
+            {editorPanel === "geomap" && selectedGeoDistrict !== null &&
+                <RepresentElectedOfficial districtName={selectedGeoDistrict} />
+                }
             <ColourPicker />
         </>
         }
@@ -57,5 +61,11 @@ export default LeftPanel;
 
 const Wrapper = styled.div` 
 width: 20%;
+
+`;
+
+const ListItem = styled.li` 
+list-style: none;
+
 
 `;

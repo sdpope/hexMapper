@@ -46,9 +46,10 @@ const SelectedHexDetails = () => {
         <Wrapper>
         {selectedHex !== null && selectedHex !== undefined &&
         <div>
-            <p>Selected Hex: {selectedHex}</p>
-            <p>Row: {currentMap.hexes[selectedHex].r}</p>
-            <p>Column: {currentMap.hexes[selectedHex].q}</p>
+            <ul>
+            <li>Selected Hex: {selectedHex}</li>
+            <li>Row: {currentMap.hexes[selectedHex].r}, Column: {currentMap.hexes[selectedHex].q}</li>
+            </ul>
             <div>
                 {currentMap.hexes[selectedHex].district === undefined &&
             "no district selected yet"}

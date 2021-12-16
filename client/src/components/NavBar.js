@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
 
@@ -8,13 +8,13 @@ const NavBar = () => {
         <Navigation>
             <NavList>
                 <NavItem>
-                    <Link to="/">Editor</Link>
+                    <GoTo to="/">Editor</GoTo>
                 </NavItem>
                 <NavItem>
-                    <Link to="/geomap">GeoMap</Link>
+                    <GoTo to="/geomap">GeoMap</GoTo>
                 </NavItem>
                 <NavItem>
-                    <Link to="/manage">Manage Maps</Link>
+                    <GoTo to="/manage">Manage Maps</GoTo>
                 </NavItem>
             </NavList>
         </Navigation>
@@ -39,3 +39,13 @@ margin-right: 25px;
 list-style: none;
 
 `
+
+const GoTo = styled(NavLink)` 
+text-decoration: none;
+color: black;
+&:active {
+    font-weight: bold;
+}
+
+
+`;

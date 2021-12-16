@@ -32,10 +32,12 @@ const Setup = () => {
         <form onSubmit={handleSubmit}>
         
         <SettingsWrapper>
+            <h3>Grid settings</h3>
             <label for="heightTiles">Height (tiles)</label>
-            <input name="heightTiles" type="number" defaultValue="20" min="1"></input>
+            <SizePicker name="heightTiles" type="number" defaultValue="20" min="1" />
             <label for="widthTiles">Width (tiles)</label>
-            <input name="widthTiles" type="number" defaultValue="20" min="1"></input>
+            <SizePicker name="widthTiles" type="number" defaultValue="20" min="1" />
+            <h3>Dataset</h3>
             <select
                 onChange={(event) => {
                     console.log(event.target.value);
@@ -65,4 +67,10 @@ const SettingsWrapper = styled.div`
 display: flex;
 flex-direction: column;
 width: 500px;
+`;
+
+const SizePicker = styled.input` 
+width: 50px;
+
+
 `;

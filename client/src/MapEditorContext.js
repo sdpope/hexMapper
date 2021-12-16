@@ -33,7 +33,7 @@ export const MapEditorProvider = ({children}) => {
     
     const [colourRules, setColourRules] = React.useState(null); //maybe add some defaults
 
-
+    const [selectedGeoDistrict, setSelectedGeoDistrict] = React.useState(null);
 
 
   React.useEffect(() => {
@@ -84,7 +84,7 @@ export const MapEditorProvider = ({children}) => {
         .then((res) => {
           //console.log(res);
           rawGeoJSON = res.objects;
-          console.log(rawGeoJSON);
+          //console.log(rawGeoJSON);
           setDistrictsGeo(rawGeoJSON);
         });
         }
@@ -108,10 +108,10 @@ export const MapEditorProvider = ({children}) => {
             })
           })
         }
-        console.log("partyByDistrict", newPartyByDistrict);
-        console.log(Object.keys(newPartyByDistrict).length);
-        console.log("Districts:", districts);
-        console.log("Electeds", representElecteds);
+        //console.log("partyByDistrict", newPartyByDistrict);
+        //console.log(Object.keys(newPartyByDistrict).length);
+        //console.log("Districts:", districts);
+        //console.log("Electeds", representElecteds);
         setPartyByDistrict(newPartyByDistrict);
 
 
@@ -135,11 +135,7 @@ export const MapEditorProvider = ({children}) => {
             currentMapTitle, setCurrentMapTitle,
             districtsGeo, setDistrictsGeo,
             partyByDistrict, setPartyByDistrict,
-
-
-            
-
-
+            selectedGeoDistrict, setSelectedGeoDistrict
             }} >
             {children}
         </MapEditorContext.Provider>

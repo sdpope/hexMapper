@@ -39,6 +39,7 @@ const MapProperties = () => {
 const SettingsWrapper = styled.div` 
 display: flex;
 flex-direction: column;
+align-content: center;
 `;
 
 const SizeInput = styled.input` 

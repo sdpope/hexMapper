@@ -1,5 +1,6 @@
 import React from "react";
 import { MapEditorContext } from "../../MapEditorContext";
+import styled from "styled-components";
 
 
 const ColourPicker = () => {
@@ -10,7 +11,7 @@ const ColourPicker = () => {
         //console.log(colourRules);
         
         if (representElecteds !== null && colourRules === null ) {
-            console.log("inside if statement");
+            //console.log("inside if statement");
             let politicalParties = [];
             representElecteds.forEach((elected) => {
                 let partyName = elected.party_name;

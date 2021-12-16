@@ -7,7 +7,7 @@ import { MapEditorContext } from "../MapEditorContext";
 const DistrictPolygon = ({districtShape, districtName, }) => {
 
 
-    const {districts, representElecteds, colourRules, partyByDistrict } = React.useContext(MapEditorContext);
+    const {selectedHex, currentMap, selectedGeoDistrict, setSelectedGeoDistrict, districts, representElecteds, colourRules, partyByDistrict } = React.useContext(MapEditorContext);
      // first we find the rep:
 
     let fillColour = "white";
@@ -20,15 +20,24 @@ const DistrictPolygon = ({districtShape, districtName, }) => {
             }
         }) 
     }
-    
-
-    if (fillColour === "green") {
-        //console.log(districtName, partyByDistrict[districtName]);
-    }
 
     const onClickHandler = (event) => {
         console.log(districtName);
+        //setSelectedGeoDistrict(districtName);
     }
+
+    let isSelectedHex = false;
+
+    if (selectedHex !== null && currentMap.hexes[selectedHex].hasOwnProperty("district")) {
+        if (currentMap.hexes[selectedHex]["district"] === districtName ) {
+            isSelectedHex = true;
+        }
+    }
+
+
+    let opacity = isSelectedHex ? 1 : 0.4;
+    let strokeWeight = isSelectedHex ? 5 : 1;
+
 
     return (
         <>
@@ -40,10 +49,10 @@ const DistrictPolygon = ({districtShape, districtName, }) => {
                         path={convertedPolygon}
                         options={{
                         fillColor: fillColour,
-                        fillOpacity: 0.4,
+                        fillOpacity: opacity,
                         strokeColor: fillColour,
                         strokeOpacity: 0.8,
-                        strokeWeight: 1
+                        strokeWeight: strokeWeight,
         }} />
                 );
             })}

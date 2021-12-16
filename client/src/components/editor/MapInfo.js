@@ -3,6 +3,7 @@ import { MapEditorContext } from "../../MapEditorContext";
 import MapProperties from "./MapProperties";
 import UpdateMapButton from "../UpdateMapButton";
 import SubmitMapButton from "../SubmitMapButton";
+import styled from "styled-components";
 
 const MapInfo = () => {
 
@@ -10,21 +11,22 @@ const MapInfo = () => {
 
 
     return (
-        <div>
+        <Wrapper>
             <h3>Map Info</h3>
             <ul>
                 {currentMapTitle !== null &&
-                <li><input type="text" value={currentMapTitle} onChange={
+                <InfoLine>
+                    <label>Title:</label><input type="text" value={currentMapTitle} onChange={
                     (event) => {
                         event.stopPropagation();
                         setCurrentMapTitle(event.target.value);
                         //console.log(event.target.value);
                     }
-                }/></li>
+                }/></InfoLine>
                 
                 }
                 {currentMap !== null &&
-                <li>{Object.keys(currentMap.hexes).length} tiles{districts !== null && <span>, {districts.length} districts.</span> }</li>
+                <InfoLine>{Object.keys(currentMap.hexes).length} tiles{districts !== null && <span>, {districts.length} districts.</span> }</InfoLine>
                 }
             </ul>
             <MapProperties />
@@ -32,8 +34,21 @@ const MapInfo = () => {
             <UpdateMapButton /> :
             <SubmitMapButton />
             }
-        </div>
+        </Wrapper>
     );
 }
 
 export default MapInfo;
+
+const InfoLine = styled.li` 
+list-style: none;
+
+
+`;
+
+const Wrapper = styled.div` 
+display: flex;
+flex-direction: column;
+justify-items: center;
+
+`;
