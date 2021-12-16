@@ -28,15 +28,15 @@ const DistrictPolygon = ({districtShape, districtName, }) => {
 
     let isSelectedHex = false;
 
-    if (selectedHex !== null && currentMap.hexes[selectedHex].hasOwnProperty("district")) {
+    /* if (selectedHex !== null && currentMap.hexes[selectedHex].hasOwnProperty("district")) {
         if (currentMap.hexes[selectedHex]["district"] === districtName ) {
             isSelectedHex = true;
         }
-    }
+    } */
 
 
-    let opacity = isSelectedHex ? 1 : 0.4;
-    let strokeWeight = isSelectedHex ? 5 : 1;
+    let opacity = 0.4;
+    let strokeWeight = 1;
 
 
     return (
